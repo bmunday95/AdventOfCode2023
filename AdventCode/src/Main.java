@@ -1,6 +1,14 @@
+import java.io.FileNotFoundException;
+
 public class Main {
 
-  public static void main(String[] args) {
-    System.out.println("Hello world!");
+  public static void main(String[] args) throws FileNotFoundException {
+
+    AdventDayOne adventDayOne = new AdventDayOne();
+    DayOneInput dayOneInput = new DayOneInput();
+
+    System.out.println(adventDayOne.calibrationValues());
+
+
   }
 }
