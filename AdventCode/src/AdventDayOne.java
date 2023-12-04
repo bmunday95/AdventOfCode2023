@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class AdventDayOne {
@@ -26,12 +27,14 @@ public class AdventDayOne {
       String individualEntry = dayOneInput.dayOneInput().get(i);
 
       char[] characters = individualEntry.toCharArray();
-//      String doubleDigits = new String("");
+      String doubleDigits = new String("");
 
       for (int j = 0; j < characters.length; j++) {
         char firstSplitEntry = characters[j];
         if (Character.isDigit(firstSplitEntry)) {
-//          doubleDigits.concat(String.valueOf(characters[j]));
+          String firstDigit = String.valueOf(characters[j]);
+//          String firstConcat = doubleDigits + firstDigit;
+//          doubleDigits.concat(firstDigit);
           calibrationFigure.add(String.valueOf(firstSplitEntry));
           break;
         }
@@ -42,13 +45,41 @@ public class AdventDayOne {
 
         if (Character.isDigit(secondSplitEntry)) {
 //          doubleDigits.concat(String.valueOf(characters[k]));
-          calibrationFigure.add(String.valueOf(secondSplitEntry));
-//          calibrationFigure.add(String.valueOf(doubleDigits));
+          String secondDigit = String.valueOf(secondSplitEntry);
+//          calibrationFigure.add(String.valueOf(secondSplitEntry));
+//          doubleDigits.concat(secondDigit);
+          calibrationFigure.add(secondDigit);
           break;
         }
       }
     }
     return calibrationFigure;
+  }
+
+  public List<String> mergedCoords() {
+    List<String> calibrationFigures = calibrationValues();
+    List<String> coordinates = new ArrayList<>();
+
+    for(int i = 0; i < calibrationFigures.size(); i+=2) {
+      String firstDigit = calibrationFigures.get(i);
+      String secondDigit = calibrationFigures.get(i+1);
+
+      String mergedDigits = firstDigit.concat(secondDigit);
+
+      coordinates.add(mergedDigits);
+    }
+
+    return coordinates;
+  }
+
+  public Integer finalCoordinates() {
+    List<String> mergedCoordinates = mergedCoords();
+
+    List<Integer> convertedCoords = mergedCoordinates.stream().map(Integer::valueOf).collect(Collectors.toList());
+
+    Integer finalCoordinate = convertedCoords.stream().collect(Collectors.summingInt(Integer::intValue));
+
+    return finalCoordinate;
   }
 
 }

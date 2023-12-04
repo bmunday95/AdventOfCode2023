@@ -7,7 +7,9 @@ public class Main {
     AdventDayOne adventDayOne = new AdventDayOne();
     DayOneInput dayOneInput = new DayOneInput();
 
-    System.out.println(adventDayOne.calibrationValues());
+//    System.out.println(adventDayOne.calibrationValues());
+//    System.out.println(adventDayOne.mergedCoords());
+    System.out.println(adventDayOne.finalCoordinates());
 
 
   }
